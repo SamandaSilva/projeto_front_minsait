@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.rss.AppProdutos.model.Produto;
 import br.com.rss.AppProdutos.service.ProdutoService;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/api/produtos") //http://localhost:8080/api/produtos
 public class ProdutoResource {
@@ -53,7 +55,7 @@ public class ProdutoResource {
 		return ResponseEntity.ok(newProduto);
 	}
 	
-	@PutMapping
+	@PutMapping("/{id}")
 	public ResponseEntity<Produto> update(@RequestBody Produto produto){
 		Produto newProduto = produtoService.update(produto);
 		if(newProduto == null)
