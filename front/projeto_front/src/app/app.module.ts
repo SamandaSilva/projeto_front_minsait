@@ -8,6 +8,8 @@ import { EdicaoProdutoComponent } from './pages/edicao-produto/edicao-produto.co
 import { ProdutoComponent } from './pages/produto/produto.component';
 import { ProdutosService } from './service/produtos.service';
 import { HttpClientModule } from '@angular/common/http';
+import { AppRoutingModule } from './app-routing.module';
+import { HomeComponent } from './pages/home/home.component';
 
 @NgModule({
   declarations: [
@@ -15,11 +17,13 @@ import { HttpClientModule } from '@angular/common/http';
     ProdutoHeaderComponent,
     CadastroProdutoComponent,
     EdicaoProdutoComponent,
-    ProdutoComponent
+    ProdutoComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule
   ],
   providers: [ProdutosService],
   bootstrap: [AppComponent]
