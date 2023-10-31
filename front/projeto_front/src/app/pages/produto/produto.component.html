@@ -1,4 +1,4 @@
-<table class="table" *ngFor="let produto of produto">
+<table class="table">
     <thead>
       <tr>
         <th scope="col">Nome</th>
@@ -8,19 +8,23 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
+      <tr *ngFor="let produto of produto">
         <td scope="row">{{produto.nome}}</td>
         <td>{{produto.codigoBarras}}</td>
         <td>{{produto.preco}}</td>
         <td>
             <div class="btn-group" role="group" aria-label="Basic mixed styles example" > 
+              <a class="nav-link active" aria-current="page" [routerLink]="'/produtos/editar/' + produto.id">
                 <button type="button" class="btn btn-warning">Editar</button>
-                <button type="button" class="btn btn-danger">Excluir</button>
+            </a>
+                <button type="button" class="btn btn-danger" (click)="deletar(produto.id)">Excluir</button>
             </div>
         </td>
       </tr>
     </tbody>
   </table>
   <div>
-    <button type="button" class="btn btn-primary btn-lg">Cadastrar</button>
+    <a class="nav-link active" aria-current="page" routerLink="/produtos/cadastrar" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        <button type="button" class="btn btn-primary btn-lg">Cadastrar produto</button>
+    </a>
   </div>

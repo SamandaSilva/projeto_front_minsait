@@ -10,6 +10,7 @@ import { ProdutosService } from './service/produtos.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './pages/home/home.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,12 +19,15 @@ import { HomeComponent } from './pages/home/home.component';
     CadastroProdutoComponent,
     EdicaoProdutoComponent,
     ProdutoComponent,
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    
   ],
   providers: [ProdutosService],
   bootstrap: [AppComponent]

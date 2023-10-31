@@ -11,7 +11,7 @@ export class ProdutoComponent {
 
       produto: IProdutos[] = [];
 
-      constructor(private produtosService: ProdutosService){}
+      constructor(private produtosService: ProdutosService,){}
 
       ngOnInit(){
         this.listar();
@@ -22,6 +22,14 @@ export class ProdutoComponent {
         this.produto = produto;
       }, (error) => {
         console.log("Erro ao buscar produtos");
+      }
+    );
+  }
+
+  deletar(id: number) {
+    this.produtosService.deletar(id).subscribe(
+      () => {
+        this.produto = this.produto.filter((produto) => produto.id !== id);
       }
     );
   }
