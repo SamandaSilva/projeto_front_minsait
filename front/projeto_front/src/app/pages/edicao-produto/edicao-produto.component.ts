@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProdutosService } from 'src/app/service/produtos.service';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { IProdutos } from 'src/app/interfaces/produtos';
 import { ActivatedRoute } from '@angular/router';
 
@@ -14,21 +14,19 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class EdicaoProdutoComponent implements OnInit{
 
-  produto: IProdutos | null = null;
-  produtoId: number = 0 ;
+  produto!: IProdutos;
+  produtoId!: number;
+  produtoForm!: FormGroup;
 
   constructor(
     private produtoService: ProdutosService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private formBuilder: FormBuilder
     ){ }
 
-  produtoForm = new FormGroup({
-    nome: new FormControl('', Validators.required),
-    codigoBarras: new FormControl('', Validators.required),
-    preco: new FormControl(0),
-  });
-
   ngOnInit() {
+    this.ConfigurarForm();
+
       this.route.params.subscribe((params) => {
         const id = +params['id'];
         if (!isNaN(id)) {
@@ -58,6 +56,22 @@ export class EdicaoProdutoComponent implements OnInit{
     }
   }
   
+  ConfigurarForm(){
+    this.produtoForm = this.formBuilder.group({
+      nome: new FormControl('', [Validators.required,
+        Validators.max(100),
+        ]),
+      codigoBarras: new FormControl('', [Validators.required,
+        Validators.pattern('^[0-9]+$'),
+        Validators.maxLength(30),
+      ]),
+      preco: new FormControl(0, [Validators.required,
+        Validators.pattern('^[0-9]+$'),
+        Validators.min(1),
+        Validators.max(100000),
+      ]),
+    });
+  }
   
     
   }
