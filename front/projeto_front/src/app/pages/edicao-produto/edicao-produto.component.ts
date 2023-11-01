@@ -3,9 +3,7 @@ import { ProdutosService } from 'src/app/service/produtos.service';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { IProdutos } from 'src/app/interfaces/produtos';
 import { ActivatedRoute } from '@angular/router';
-
-
-
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-edicao-produto',
@@ -50,11 +48,22 @@ export class EdicaoProdutoComponent implements OnInit{
   
     if (this.produto) {
       produto.id = this.produto.id;
-      this.produtoService.atualizarProdutos(produto.id, produto).subscribe(() => {
-        this.produtoForm.reset();
-      });
+      this.produtoService.atualizarProdutos(produto.id, produto).subscribe(
+        (result) => {
+          Swal.fire({
+            icon: 'success',
+            title: 'EDIÇÃO CONCLUÍDA!!',
+            text: 'Produto editado com sucesso!',
+            showConfirmButton: true,
+          });
+          this.produtoForm.reset();
+          },
+          (error) => {
+            const { message } = error;
+            Swal.fire('Erro ao editar produto', message, 'error');
+          });
+       }
     }
-  }
   
   ConfigurarForm(){
     this.produtoForm = this.formBuilder.group({

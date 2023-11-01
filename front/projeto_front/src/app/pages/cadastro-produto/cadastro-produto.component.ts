@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { IProdutos } from 'src/app/interfaces/produtos';
 import { ProdutosService } from 'src/app/service/produtos.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-cadastro-produto',
@@ -25,10 +26,20 @@ export class CadastroProdutoComponent {
   enviar(){
     const produto: IProdutos = this.produtoForm.value as IProdutos;
 
-    produto.codigoBarras = produto.codigoBarras.toString();
-
-    this.produtos.cadastrarProdutos(produto).subscribe(() =>
-    this.produtoForm.reset());    
+    this.produtos.cadastrarProdutos(produto).subscribe(
+      (result) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Produto cadastrado com sucesso!',
+        showConfirmButton: false,
+        timer: 1500
+      });
+      this.produtoForm.reset();
+      },
+      (error) => {
+        const { message } = error;
+        Swal.fire('Erro ao cadastrar produto', message, 'error');
+      });    
   }
 
   ConfigurarForm(){
