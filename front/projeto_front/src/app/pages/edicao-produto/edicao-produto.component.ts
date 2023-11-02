@@ -68,7 +68,7 @@ export class EdicaoProdutoComponent implements OnInit{
   ConfigurarForm(){
     this.produtoForm = this.formBuilder.group({
       nome: new FormControl('', [Validators.required,
-        Validators.max(100),
+        Validators.maxLength(100),
         ]),
       codigoBarras: new FormControl('', [Validators.required,
         Validators.pattern('^[0-9]+$'),

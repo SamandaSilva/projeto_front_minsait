@@ -3,6 +3,14 @@ body {
     background-color: #ccc; /* Use a cor cinza desejada */
   }
 
-  *{
+  h1{
     font-family: 'Poppins', sans-serif;
   }
+  table{
+    font-family: 'Poppins', sans-serif;
+
+  }
+ header{
+    font-family: 'Poppins', sans-serif;
+ }
+

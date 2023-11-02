@@ -1,3 +1,4 @@
+import { NgClass } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { IProdutos } from 'src/app/interfaces/produtos';
@@ -12,7 +13,6 @@ import Swal from 'sweetalert2';
 export class CadastroProdutoComponent {
 
   produtoForm!: FormGroup;
-
 
   constructor(private produtos: ProdutosService,
               private formBuilder: FormBuilder
@@ -45,20 +45,17 @@ export class CadastroProdutoComponent {
   ConfigurarForm(){
     this.produtoForm = this.formBuilder.group({
       nome: new FormControl('', [Validators.required,
-        Validators.max(100),
+        Validators.maxLength(100),
         ]),
       codigoBarras: new FormControl('', [Validators.required,
         Validators.pattern('^[0-9]+$'),
         Validators.maxLength(30),
       ]),
-      preco: new FormControl(0, [Validators.required,
+      preco: new FormControl('', [Validators.required,
         Validators.pattern('^[0-9]+$'),
-        Validators.min(1),
-        Validators.max(100000),
+        Validators.max(10000),
       ]),
     });
   }
-  
-
 }
 
