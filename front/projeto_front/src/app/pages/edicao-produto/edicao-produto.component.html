@@ -1,3 +1,5 @@
+<div class="d-flex justify-content-center align-items-center">
+<div style="margin-top: 50px;">
 <h1>Editar Produto</h1>
 
 <form [formGroup]="produtoForm" (submit)="atualizarProdutos()" novalidate>
@@ -16,5 +18,11 @@
         <label for="number" class="form-label" >Preço *</label>
         <input type="number" class="form-control" id="preco" formControlName="preco">
       </div>
-      <button class="btn btn-primary" type="submit" [disabled]="produtoForm.invalid">Salvar</button>
+      <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+        <a class="nav-link" routerLink="/produtos" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <button class="btn btn-secondary btn-lg" type="button" [disabled]="produtoForm.invalid">Voltar</button>
+        </a>
+        <button class="btn btn-primary btn-lg" type="submit" [disabled]="produtoForm.invalid">Salvar</button>
+      </div>
     </form>
+</div>

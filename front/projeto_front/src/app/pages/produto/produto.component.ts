@@ -45,7 +45,7 @@ export class ProdutoComponent {
             ); 
               Swal.fire(
               'Excluído!',
-              'Produto excluído.',
+              'Produto excluído com sucesso!',
               'success'
             );         
         }});
