@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { ProdutosService } from 'src/app/service/produtos.service';
 import Swal from 'sweetalert2';
 
+
 @Component({
   selector: 'app-produto',
   templateUrl: './produto.component.html',
@@ -12,7 +13,7 @@ export class ProdutoComponent {
 
       produto: IProdutos[] = [];
 
-      constructor(private produtosService: ProdutosService,){}
+      constructor(private produtosService: ProdutosService){}
 
       ngOnInit(){
         this.listar();
