@@ -51,8 +51,8 @@ export class CadastroProdutoComponent {
         Validators.pattern('^[0-9]+$'),
         Validators.maxLength(30),
       ]),
-      preco: new FormControl('', [Validators.required,
-        Validators.pattern('^[0-9]+$'),
+      preco: new FormControl(0, [Validators.required,
+        Validators.pattern('^[0-9]+(\\.[0-9]{1,2})?$'),
         Validators.max(10000),
       ]),
     });

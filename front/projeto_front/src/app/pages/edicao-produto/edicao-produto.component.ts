@@ -75,7 +75,7 @@ export class EdicaoProdutoComponent implements OnInit{
         Validators.maxLength(30),
       ]),
       preco: new FormControl(0, [Validators.required,
-        Validators.pattern('^[0-9]+$'),
+        Validators.pattern('^[0-9]+(\\.[0-9]{1,2})?$'),
         Validators.min(1),
         Validators.max(100000),
       ]),
